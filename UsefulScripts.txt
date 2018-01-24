@@ -9,4 +9,6 @@ Get-ChildItem "C:\Code\Scripts” | Select-Object Name
 
 /*/*/*/*/*/*/*/*/*/*/*/*/*/
 
+execute SQL PROCs in bulk
+
 c:\>for %f in (*.sql) do sqlcmd /S [ServerName] /d [DBName] /E /i "%f"
