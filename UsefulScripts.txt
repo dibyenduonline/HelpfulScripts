@@ -1,0 +1,12 @@
+Few Helpful PS scripts
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/
+Get all File Names
+
+Get-ChildItem "C:\Code\Scripts” | Select-Object Name
+
+
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/
+
+c:\>for %f in (*.sql) do sqlcmd /S [ServerName] /d [DBName] /E /i "%f"
