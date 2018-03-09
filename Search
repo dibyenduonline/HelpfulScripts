@@ -1,0 +1,34 @@
+Set-StrictMode -Version latest
+$path     = "c:\Demo\Search\I-P"
+$files    = Get-Childitem $path -Include *.docx,*.dotx,*.doc -Recurse | Where-Object { !($_.psiscontainer) }
+$output   = "c:\Demo\Search\O-P\result.txt"
+$findtext = "joe"
+$application = New-Object -comobject word.application
+$application.visible = $False
+
+
+Function getStringMatch
+{
+  # Loop through all *.doc files in the $path directory
+  Foreach ($file In $files)
+  {
+
+   $document = $application.documents.open($file.FullName,$false,$true)
+   $range = $document.content
+   $wordFound = $range.find.execute($findText)
+
+   if($wordFound) 
+    { 
+     "$file.fullname has $findtext" | Out-File $output -Append
+    }
+    
+    
+ #   Move-Item $file "C:\Demo\search\Done"
+    
+  }
+  
+  $document.close()
+    $application.quit()
+}
+
+getStringMatch
